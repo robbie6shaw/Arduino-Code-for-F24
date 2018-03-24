@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceRoot}",
+                "D:\\Program Files\\Arduino\\hardware\\arduino\\avr\\cores\\arduino",
+                "D:\\Program Files\\Arduino\\hardware\\tools\\avr\\avr\\include",
+                "D:\\Program Files\\Arduino\\hardware\\tools\\avr\\lib\\gcc\\avr\\4.9.2\\include",
+                "D:\\Program Files\\Arduino\\hardware\\arduino\\avr\\variants\\mega",
+                "D:\\Program Files\\Arduino\\libraries\\LiquidCrystal\\src",
+                "D:/Program Files\\Arduino\\hardware\\arduino\\avr\\libraries\\SoftwareSerial\\src"
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": false,
+                "path": [
+                    "D:\\Program Files\\Arduino\\hardware\\arduino\\avr\\cores\\arduino",
+                    "D:\\Program Files\\Arduino\\hardware\\tools\\avr\\avr\\include",
+                    "D:\\Program Files\\Arduino\\hardware\\tools\\avr\\lib\\gcc\\avr\\4.9.2\\include",
+                    "D:\\Program Files\\Arduino\\hardware\\arduino\\avr\\variants\\mega",
+                    "D:\\Program Files\\Arduino\\libraries\\LiquidCrystal\\src"
+                ]
+            },
+            "intelliSenseMode": "msvc-x64"
+        }
+    ],
+    "version": 3
+}

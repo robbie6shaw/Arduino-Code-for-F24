@@ -1,0 +1,4 @@
+{
+    "board": "arduino:avr:uno",
+    "sketch": "Battery_Tester\\Battery_Tester.ino"
+}
