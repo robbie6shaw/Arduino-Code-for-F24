@@ -13,13 +13,12 @@
 
   //Set Up Variables
     int ButtonIn=0;
-    String VoltageL="";   //The voltage when the motor is not running
-    String CurrentL="";   //Curent when the motor is not running
-    String VoltageH1="";  //Voltage when the motor just starts running
-    String CurrentH1="";  //Current when the motor just starts running
-    String VoltageH2="";  //Voltage after a minute of motor run
-    String CurrentH2="";  //Current after a minute of motor run
     int CycleCount=0;     //Begins counter for amount of cycles the program has run
+    int readingCount = 0;
+    int voltageList[]={0.0};
+    int currentList[]={0,0};
+    int rpmList[]={0,0};
+    int tachVoltage = 244;
 
   //Set Up Liquid Crystal Display
     // include the library code:
@@ -47,8 +46,9 @@ void loop() {
     Serial.print('t=');
     Serial.println(String(tStart));
 
-    testVoltage();
-    testCurrent();
+    voltageList [readingCount] = voltageList + testVoltage();
+    currentList [readingCount]= currentList + testCurrent();
+    readingCount ++;
 
     int rpm = 0;
 
@@ -64,8 +64,9 @@ void loop() {
     Serial.print('t=');
     Serial.println(String(tStart+15000));
 
-    testVoltage();
-    testCurrent();
+    voltageList [readingCount] = voltageList + testVoltage();
+    currentList [readingCount]= currentList + testCurrent();
+    readingCount ++;
 
     while (millis() < tStart + 30000 ){
 
@@ -79,10 +80,11 @@ void loop() {
     Serial.print('t=');
     Serial.println(String(tStart+30000));
 
-    testVoltage();
-    testCurrent();
+    voltageList [readingCount] = voltageList + testVoltage();
+    currentList [readingCount]= currentList + testCurrent();
+    readingCount ++;
 
-    while (millis() < tStart + 45s000 ){
+    while (millis() < tStart + 45000 ){
 
       if (analogRead(tachometerPin) < tachVoltage){
         rpm ++;
@@ -94,8 +96,9 @@ void loop() {
     Serial.print('t=');
     Serial.println(String(tStart+45000));
 
-    testVoltage();
-    testCurrent();
+    voltageList [readingCount] = voltageList + testVoltage();
+    currentList [readingCount]= currentList + testCurrent();
+    readingCount ++;
 
     while (millis() < tStart + 60000 ){
 
@@ -104,6 +107,8 @@ void loop() {
         }
     
     }
+
+    rpmList [readingCount/4] = rpm;
 }
 
 int testVoltage(){
