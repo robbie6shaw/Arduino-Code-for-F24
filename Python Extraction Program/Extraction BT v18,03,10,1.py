@@ -8,8 +8,8 @@ from openpyxl.utils import get_column_letter, column_index_from_string
 cycleCount = 3 
 variableCount = 7
 
-rawLocation = 'F:\\F24\\Arduino Code\\Python Extraction Program\\RawDataExample.txt'
-processedLocation = 'F:\\F24\\Arduino Code\\Python Extraction Program\\Battery Data.xlsx'
+rawLocation = 'E:\\Arduino-Code-for-F24\\Python Extraction Program\\RawDataExample.txt'
+processedLocation = 'F:\\F24\\Arduino-Code-for-F24\\Python Extraction Program\\Battery Data.xlsx'
 
 dataRead = open(rawLocation)
 rawData = dataRead.read()
@@ -28,23 +28,23 @@ wa['E1']='Inital Loaded Current'
 wa['F1']='Final Loaded Voltage'
 wa['G1']='Final Loaded Current'
 
-for i in range(variableCount):
+for i in range(variableCount):              #Widens all the columns used in the program
     column = get_column_letter(i+1)
     wa.column_dimensions[column].width=20
 
-for i in range(cycleCount):
-    oneTimeStr =  rawDataList[i]
-    oneTimeList = oneTimeStr.split('\n')
+for i in range(cycleCount):                 #Repeats for each set of data readings
+    oneTimeStr =  rawDataList[i]            #Takes this cycles data reading
+    oneTimeList = oneTimeStr.split('\n')    #Split the data readings into an array of each data type   
 
-    for j in range(variableCount):
+    for j in range(variableCount):          #Repeats for every Data Type
 
-        value = oneTimeList [j]
-        valueList = value.split('=')
+        value = oneTimeList [j]             #Selects this cycles data point for procesing
+        valueList = value.split('=')        #Seperates the label from the value
 
-        if 't' in valueList:
-            timeStamp = valueList[1]
-            cell = 'A'+str(i+2)
-            wa[cell] = float(timeStamp) 
+        if 't' in valueList:                #Tests wether the current data is a time variable
+            timeStamp = valueList[1]        #Time value put into timeStamp Variable
+            cell = 'A'+str(i+2)             #Finds applicable cell for data
+            wa[cell] = float(timeStamp)     #Inserts data into applicable cell
         
         elif 'a' in valueList:
             unloadedVoltage = valueList[1]
